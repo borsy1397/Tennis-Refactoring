@@ -3,14 +3,16 @@ public class TennisGame1 implements TennisGame {
     
     private Player player1;
     private Player player2;
+    private String result;
 
     public TennisGame1(String player1Name, String player2Name) {
         this.player1 = new Player(player1Name);
         this.player2 = new Player(player2Name);
+        this.result = "Love-All";
     }
 
     public void wonPoint(String playerName) {
-        if (playerName == "player1")
+        if (player1.getName().equals(playerName))
             player1.increaseScore();
         else
             player2.increaseScore();
