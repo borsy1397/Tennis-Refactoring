@@ -55,37 +55,45 @@ public class TennisGame1 implements TennisGame {
 			return "Win for " + player2.getName();
 	}
 	
-	public String getScore() {
+	private String scoreLessThan4() {
 		String score = "";
 		int tempScore = 0;
+		for (int i = 1; i < 3; i++) {
+			if (i == 1)
+				tempScore = player1.getScore();
+			else {
+				score += "-";
+				tempScore = player2.getScore();
+			}
+			switch (tempScore) {
+			case 0:
+				score += "Love";
+				break;
+			case 1:
+				score += "Fifteen";
+				break;
+			case 2:
+				score += "Thirty";
+				break;
+			case 3:
+				score += "Forty";
+				break;
+			}
+		}
+		
+		return score;
+	}
+	
+	public String getScore() {
+		String score = "";
 		if (player1.getScore() == player2.getScore()) {
 			score = scoreEqual(player1.getScore());
-			
+		
 		} else if (player1.getScore() >= 4 || player2.getScore() >= 4) {
 			score = scoreGreaterThan3();
+			
 		} else {
-			for (int i = 1; i < 3; i++) {
-				if (i == 1)
-					tempScore = player1.getScore();
-				else {
-					score += "-";
-					tempScore = player2.getScore();
-				}
-				switch (tempScore) {
-				case 0:
-					score += "Love";
-					break;
-				case 1:
-					score += "Fifteen";
-					break;
-				case 2:
-					score += "Thirty";
-					break;
-				case 3:
-					score += "Forty";
-					break;
-				}
-			}
+			score = scoreLessThan4();
 		}
 		return score;
 	}
