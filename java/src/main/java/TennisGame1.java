@@ -10,15 +10,18 @@ public class TennisGame1 implements TennisGame {
         this.player2 = new Player(player2Name);
         this.result = "Love-All";
     }
+    
+    private boolean nameEquals(Player player, String playerName) {
+    	return player.getName().equals(playerName);
+    }
 
     public void wonPoint(String playerName) {
     	
-    	if(!(player1.getName().equals(playerName) || player2.getName().equals(playerName))) {
+    	if( !(nameEquals(player1, playerName) || nameEquals(player2, playerName)) ) {
     		throw new java.lang.RuntimeException("There is no player in the game whose name is " + playerName + "!");
     	}
     	
-    	
-        if (player1.getName().equals(playerName)) {
+        if (nameEquals(player1, playerName)) {
             player1.increaseScore();
         } else {
         	player2.increaseScore();
