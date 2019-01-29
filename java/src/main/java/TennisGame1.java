@@ -12,10 +12,17 @@ public class TennisGame1 implements TennisGame {
     }
 
     public void wonPoint(String playerName) {
-        if (player1.getName().equals(playerName))
+    	
+    	if(!(player1.getName().equals(playerName) || player2.getName().equals(playerName))) {
+    		throw new java.lang.RuntimeException("There is no player in the game whose name is " + playerName + "!");
+    	}
+    	
+    	
+        if (player1.getName().equals(playerName)) {
             player1.increaseScore();
-        else
-            player2.increaseScore();
+        } else {
+        	player2.increaseScore();
+        }
     }
 
     public String getScore() {
