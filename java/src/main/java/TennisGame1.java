@@ -41,6 +41,20 @@ public class TennisGame1 implements TennisGame {
 		}
 	}
 
+	
+	private String scoreGreaterThan3() {
+		int minusResult = player1.getScore() - player2.getScore();
+		
+		if (minusResult == 1)
+			return "Advantage " + player1.getName();
+		else if (minusResult == -1)
+			return "Advantage " + player2.getName();
+		else if (minusResult >= 2)
+			return "Win for " + player1.getName();
+		else
+			return "Win for " + player2.getName();
+	}
+	
 	public String getScore() {
 		String score = "";
 		int tempScore = 0;
@@ -48,15 +62,7 @@ public class TennisGame1 implements TennisGame {
 			score = scoreEqual(player1.getScore());
 			
 		} else if (player1.getScore() >= 4 || player2.getScore() >= 4) {
-			int minusResult = player1.getScore() - player2.getScore();
-			if (minusResult == 1)
-				score = "Advantage player1";
-			else if (minusResult == -1)
-				score = "Advantage player2";
-			else if (minusResult >= 2)
-				score = "Win for player1";
-			else
-				score = "Win for player2";
+			score = scoreGreaterThan3();
 		} else {
 			for (int i = 1; i < 3; i++) {
 				if (i == 1)
