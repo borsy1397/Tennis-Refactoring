@@ -17,5 +17,7 @@ public class Player {
 		return score;
 	}
 
-	
+	public void increaseScore() {
+		score++;
+	}
 }
