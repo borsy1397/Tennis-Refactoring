@@ -56,7 +56,13 @@ public class TennisGame1 implements TennisGame {
 	}
 	
 	private String scoreLessThan4() {
-		String score = "";
+		
+		String[] results = {"Love", "Fifteen", "Thirty", "Forty"};
+		
+		return results[player1.getScore()] + "-" + results[player2.getScore()];
+		
+		
+		/*String score = "";
 		int tempScore = 0;
 		for (int i = 1; i < 3; i++) {
 			if (i == 1)
@@ -81,20 +87,19 @@ public class TennisGame1 implements TennisGame {
 			}
 		}
 		
-		return score;
+		return score;*/
 	}
 	
 	public String getScore() {
 		String score = "";
 		if (player1.getScore() == player2.getScore()) {
-			score = scoreEqual(player1.getScore());
+			return scoreEqual(player1.getScore());
 		
 		} else if (player1.getScore() >= 4 || player2.getScore() >= 4) {
-			score = scoreGreaterThan3();
+			return scoreGreaterThan3();
 			
 		} else {
-			score = scoreLessThan4();
+			return scoreLessThan4();
 		}
-		return score;
 	}
 }
