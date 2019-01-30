@@ -3,12 +3,10 @@ public class TennisGame1 implements TennisGame {
 
 	private Player player1;
 	private Player player2;
-	private String result;
 
 	public TennisGame1(String player1Name, String player2Name) {
 		this.player1 = new Player(player1Name);
 		this.player2 = new Player(player2Name);
-		this.result = "Love-All";
 	}
 
 	private boolean nameEquals(Player player, String playerName) {
@@ -18,7 +16,7 @@ public class TennisGame1 implements TennisGame {
 	public void wonPoint(String playerName) {
 
 		if (!(nameEquals(player1, playerName) || nameEquals(player2, playerName))) {
-			throw new java.lang.RuntimeException("There is no player in the game whose name is " + playerName + "!");
+			throw new RuntimeException("There is no player in the game whose name is " + playerName + "!");
 		}
 
 		if (nameEquals(player1, playerName)) {
@@ -61,33 +59,6 @@ public class TennisGame1 implements TennisGame {
 		
 		return results[player1.getScore()] + "-" + results[player2.getScore()];
 		
-		
-		/*String score = "";
-		int tempScore = 0;
-		for (int i = 1; i < 3; i++) {
-			if (i == 1)
-				tempScore = player1.getScore();
-			else {
-				score += "-";
-				tempScore = player2.getScore();
-			}
-			switch (tempScore) {
-			case 0:
-				score += "Love";
-				break;
-			case 1:
-				score += "Fifteen";
-				break;
-			case 2:
-				score += "Thirty";
-				break;
-			case 3:
-				score += "Forty";
-				break;
-			}
-		}
-		
-		return score;*/
 	}
 	
 	public String getScore() {
