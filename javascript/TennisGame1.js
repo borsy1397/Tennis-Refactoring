@@ -31,7 +31,9 @@ TennisGame1.prototype.scoreLessThan4 = function () {
 
 
 TennisGame1.prototype.wonPoint = function (playerName) {
-
+    this.scores[this.players.findIndex(function (el) {
+        return el === playerName;
+    })]++;
 };
 
 TennisGame1.prototype.getScore = function () {
