@@ -5,7 +5,11 @@ var TennisGame1 = function (player1Name, player2Name) {
 };
 
 TennisGame1.prototype.scoreEquals = function (point) {
-
+    if(point <= 2) {
+        return this.results[point] + "-All";
+    } else {
+        return this.results[4]; //Deuce
+    }
 };
 
 TennisGame1.prototype.scoreGreaterThan3 = function () {
