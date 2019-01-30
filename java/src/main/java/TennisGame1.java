@@ -3,7 +3,8 @@ public class TennisGame1 implements TennisGame {
 
 	private Player player1;
 	private Player player2;
-
+	private static final String[] RESULTS = {"Love", "Fifteen", "Thirty", "Forty"};
+	
 	public TennisGame1(String player1Name, String player2Name) {
 		this.player1 = new Player(player1Name);
 		this.player2 = new Player(player2Name);
@@ -27,13 +28,15 @@ public class TennisGame1 implements TennisGame {
 	}
 
 	private String scoreEqual(int point) {
+		String all = "-All";
+		
 		switch (point) {
 			case 0:
-				return "Love-All";
+				return RESULTS[0]+all;
 			case 1:
-				return "Fifteen-All";
+				return RESULTS[1]+all;
 			case 2:
-				return "Thirty-All";
+				return RESULTS[2]+all;
 			default:
 				return "Deuce";
 		}
@@ -55,20 +58,15 @@ public class TennisGame1 implements TennisGame {
 	
 	private String scoreLessThan4() {
 		
-		String[] results = {"Love", "Fifteen", "Thirty", "Forty"};
-		
-		return results[player1.getScore()] + "-" + results[player2.getScore()];
+		return RESULTS[player1.getScore()] + "-" + RESULTS[player2.getScore()];
 		
 	}
 	
 	public String getScore() {
-		String score = "";
 		if (player1.getScore() == player2.getScore()) {
 			return scoreEqual(player1.getScore());
-		
 		} else if (player1.getScore() >= 4 || player2.getScore() >= 4) {
 			return scoreGreaterThan3();
-			
 		} else {
 			return scoreLessThan4();
 		}
