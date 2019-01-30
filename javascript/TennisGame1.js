@@ -13,7 +13,16 @@ TennisGame1.prototype.scoreEquals = function (point) {
 };
 
 TennisGame1.prototype.scoreGreaterThan3 = function () {
+    minusResult = this.scores[0] - this.scores[1];
 
+    if (minusResult == 1)
+        return this.results[5] + " " + this.players[0]; //Advantage
+    else if (minusResult == -1)
+        return this.results[5] + " " + this.players[1];
+    else if (minusResult >= 2)
+        return this.results[6] + " " + this.players[0]; //Win for
+    else
+        return this.results[6] + " " + this.players[1];
 };
 
 TennisGame1.prototype.scoreLessThan4 = function () {
