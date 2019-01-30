@@ -3,7 +3,15 @@ public class TennisGame1 implements TennisGame {
 
 	private Player player1;
 	private Player player2;
-	private static final String[] RESULTS = {"Love", "Fifteen", "Thirty", "Forty"};
+	
+	/**
+	 * From index 0 to 3 the results equals the player's score,
+	 * from 4:
+	 * RESULTS[4] = Deuce
+	 * RESULTS[5] = Advantage for
+	 * RESULTS[6] = Win for
+	 */
+	private static final String[] RESULTS = {"Love", "Fifteen", "Thirty", "Forty", "Deuce", "Advantage for", "Win for"};
 	
 	public TennisGame1(String player1Name, String player2Name) {
 		this.player1 = new Player(player1Name);
@@ -32,7 +40,7 @@ public class TennisGame1 implements TennisGame {
 		if(point <= 2) {
 			return RESULTS[point] + "-All";
 		} else {
-			return "Deuce";
+			return RESULTS[4];
 		}
 	}
 
@@ -41,19 +49,17 @@ public class TennisGame1 implements TennisGame {
 		int minusResult = player1.getScore() - player2.getScore();
 		
 		if (minusResult == 1)
-			return "Advantage " + player1.getName();
+			return RESULTS[5] + " " + player1.getName();
 		else if (minusResult == -1)
-			return "Advantage " + player2.getName();
+			return RESULTS[5] + " " + player2.getName();
 		else if (minusResult >= 2)
-			return "Win for " + player1.getName();
+			return RESULTS[6] + " " + player1.getName();
 		else
-			return "Win for " + player2.getName();
+			return RESULTS[6] + " " + player1.getName();
 	}
 	
 	private String scoreLessThan4() {
-		
 		return RESULTS[player1.getScore()] + "-" + RESULTS[player2.getScore()];
-		
 	}
 	
 	public String getScore() {
