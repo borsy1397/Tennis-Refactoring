@@ -1,6 +1,11 @@
 
 public class TennisGame1 implements TennisGame {
 
+	
+	private Player player1;
+	private Player player2;
+
+	
 	/**
 	 * From index 0 to 3 the results equals the player's score,
 	 * from 4:
@@ -9,9 +14,6 @@ public class TennisGame1 implements TennisGame {
 	 * RESULTS[6] = Win for
 	 */
 	private static final String[] RESULTS = {"Love", "Fifteen", "Thirty", "Forty", "Deuce", "Advantage", "Win for"};
-	
-	private Player player1;
-	private Player player2;
 
 	public TennisGame1(String player1Name, String player2Name) {
 		this.player1 = new Player(player1Name);
