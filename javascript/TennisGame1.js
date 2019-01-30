@@ -14,15 +14,16 @@ TennisGame1.prototype.scoreEquals = function (point) {
 
 TennisGame1.prototype.scoreGreaterThan3 = function () {
     minusResult = this.scores[0] - this.scores[1];
+    var space = " ";
 
     if (minusResult == 1)
-        return this.results[5] + " " + this.players[0]; //Advantage
+        return this.results[5] + space + this.players[0]; //Advantage
     else if (minusResult == -1)
-        return this.results[5] + " " + this.players[1];
+        return this.results[5] + space + this.players[1];
     else if (minusResult >= 2)
-        return this.results[6] + " " + this.players[0]; //Win for
+        return this.results[6] + space + this.players[0]; //Win for
     else
-        return this.results[6] + " " + this.players[1];
+        return this.results[6] + space + this.players[1];
 };
 
 TennisGame1.prototype.scoreLessThan4 = function () {
@@ -31,9 +32,11 @@ TennisGame1.prototype.scoreLessThan4 = function () {
 
 
 TennisGame1.prototype.wonPoint = function (playerName) {
-    this.scores[this.players.findIndex(function (el) {
+    var index = this.players.findIndex(function (el) {
         return el === playerName;
-    })]++;
+    });
+
+    this.scores[index]++;
 };
 
 TennisGame1.prototype.getScore = function () {
