@@ -28,17 +28,11 @@ public class TennisGame1 implements TennisGame {
 	}
 
 	private String scoreEqual(int point) {
-		String all = "-All";
 		
-		switch (point) {
-			case 0:
-				return RESULTS[0]+all;
-			case 1:
-				return RESULTS[1]+all;
-			case 2:
-				return RESULTS[2]+all;
-			default:
-				return "Deuce";
+		if(point <= 2) {
+			return RESULTS[point] + "-All";
+		} else {
+			return "Deuce";
 		}
 	}
 
