@@ -26,7 +26,7 @@ TennisGame1.prototype.scoreGreaterThan3 = function () {
 };
 
 TennisGame1.prototype.scoreLessThan4 = function () {
-    return this.results[this.scores[0]] + "-" + this.results[this.scores[0]];
+    return this.results[this.scores[0]] + "-" + this.results[this.scores[1]];
 };
 
 
