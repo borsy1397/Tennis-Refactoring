@@ -39,13 +39,12 @@ TennisGame1.prototype.wonPoint = function (playerName) {
 
 TennisGame1.prototype.getScore = function () {
     if (this.scores[0] === this.scores[1]) {
-        
+        return this.scoreEquals(this.scores[0]);
     } else if (this.scores[0] >= 4 || this.scores[1] >= 4) {
-      
+        return this.scoreGreaterThan3();
     } else {
-        
+        return this.scoreLessThan4();        
     }
-    return score;
 };
 
 if (typeof window === "undefined") {
