@@ -1,76 +1,90 @@
 
 public class TennisGame1 implements TennisGame {
-    
-    private Player player1;
-    private Player player2;
-    private String result;
 
-    public TennisGame1(String player1Name, String player2Name) {
-        this.player1 = new Player(player1Name);
-        this.player2 = new Player(player2Name);
-        this.result = "Love-All";
-    }
+	/**
+	 * From index 0 to 3 the results equals the player's score,
+	 * from 4:
+	 * RESULTS[4] = Deuce
+	 * RESULTS[5] = Advantage
+	 * RESULTS[6] = Win for
+	 */
+	private static final String[] RESULTS = {"Love", "Fifteen", "Thirty", "Forty", "Deuce", "Advantage", "Win for"};
+	
+	private Player player1;
+	private Player player2;
 
-    public void wonPoint(String playerName) {
-        if (player1.getName().equals(playerName))
-            player1.increaseScore();
-        else
-            player2.increaseScore();
-    }
+	public TennisGame1(String player1Name, String player2Name) {
+		this.player1 = new Player(player1Name);
+		this.player2 = new Player(player2Name);
+	}
 
-    public String getScore() {
-        String score = "";
-        int tempScore=0;
-        if (player1.getScore()==player2.getScore())
-        {
-            switch (player1.getScore())
-            {
-                case 0:
-                        score = "Love-All";
-                    break;
-                case 1:
-                        score = "Fifteen-All";
-                    break;
-                case 2:
-                        score = "Thirty-All";
-                    break;
-                default:
-                        score = "Deuce";
-                    break;
-                
-            }
-        }
-        else if (player1.getScore()>=4 || player2.getScore()>=4)
-        {
-            int minusResult = player1.getScore()-player2.getScore();
-            if (minusResult==1) score ="Advantage player1";
-            else if (minusResult ==-1) score ="Advantage player2";
-            else if (minusResult>=2) score = "Win for player1";
-            else score ="Win for player2";
-        }
-        else
-        {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) tempScore = player1.getScore();
-                else { score+="-"; tempScore = player2.getScore();}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
-            }
-        }
-        return score;
-    }
+	/**
+	 * 
+	 * PUBLIC METHODS
+	 * 
+	 */
+
+	public void wonPoint(String playerName) {
+		if (!(nameEquals(player1, playerName) || nameEquals(player2, playerName))) {
+			throw new RuntimeException("There is no player in the game whose name is " + playerName + "!");
+		}
+
+		if (nameEquals(player1, playerName)) {
+			player1.increaseScore();
+		} else {
+			player2.increaseScore();
+		}
+	}
+
+	
+	public String getScore() {
+		
+		int player1Score = player1.getScore();
+		int player2Score = player2.getScore();
+		
+		if (player1Score == player2Score) {
+			return scoreEqual(player1Score);
+		} else if (player1Score >= 4 || player2Score >= 4) {
+			return scoreGreaterThan3();
+		} else {
+			return scoreLessThan4();
+		}
+	}
+	
+	/**
+	 * 
+	 * PRIVATE METHODS
+	 * 
+	 */
+	
+	private boolean nameEquals(Player player, String playerName) {
+		return player.getName().equals(playerName);
+	}
+
+	
+	private String scoreEqual(int point) {
+		if(point <= 2) {
+			return RESULTS[point] + "-All";
+		} else {
+			return RESULTS[4]; // Deuce
+		}
+	}
+
+	
+	private String scoreGreaterThan3() {
+		int minusResult = player1.getScore() - player2.getScore();
+		
+		if (minusResult == 1)
+			return RESULTS[5] + " " + player1.getName(); // Advantage
+		else if (minusResult == -1)
+			return RESULTS[5] + " " + player2.getName();
+		else if (minusResult >= 2)
+			return RESULTS[6] + " " + player1.getName(); // Win for
+		else
+			return RESULTS[6] + " " + player2.getName();
+	}
+	
+	private String scoreLessThan4() {
+		return RESULTS[player1.getScore()] + "-" + RESULTS[player2.getScore()];
+	}
 }
