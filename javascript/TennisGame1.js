@@ -4,6 +4,19 @@ var TennisGame1 = function (player1Name, player2Name) {
     this.scores = [0, 0];
 };
 
+TennisGame1.prototype.scoreEquals = function (point) {
+
+};
+
+TennisGame1.prototype.scoreGreaterThan3 = function () {
+
+};
+
+TennisGame1.prototype.scoreLessThan4 = function () {
+
+};
+
+
 TennisGame1.prototype.wonPoint = function (playerName) {
     if (playerName === "player1")
         this.m_score1 += 1;
