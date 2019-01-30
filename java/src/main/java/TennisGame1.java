@@ -11,7 +11,7 @@ public class TennisGame1 implements TennisGame {
 	 * RESULTS[5] = Advantage for
 	 * RESULTS[6] = Win for
 	 */
-	private static final String[] RESULTS = {"Love", "Fifteen", "Thirty", "Forty", "Deuce", "Advantage for", "Win for"};
+	private static final String[] RESULTS = {"Love", "Fifteen", "Thirty", "Forty", "Deuce", "Advantage", "Win for"};
 	
 	public TennisGame1(String player1Name, String player2Name) {
 		this.player1 = new Player(player1Name);
@@ -55,7 +55,7 @@ public class TennisGame1 implements TennisGame {
 		else if (minusResult >= 2)
 			return RESULTS[6] + " " + player1.getName();
 		else
-			return RESULTS[6] + " " + player1.getName();
+			return RESULTS[6] + " " + player2.getName();
 	}
 	
 	private String scoreLessThan4() {
